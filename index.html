@@ -3,74 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Pendaftaran Siswa Baru</title>
-    <link rel="stylesheet" href="asset/style.css">
+    <title>Formulir Pendaftaran Siswa Baru</title>
+    <style>
+        /* CSS untuk Tampilan */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 25px 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Agar padding tidak menambah lebar elemen */
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #0056b3;
+        }
+
+        #confirmation-message {
+            text-align: center;
+            margin-top: 20px;
+            color: #28a745;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
 
     <div class="container">
-        <form id="registrationForm" novalidate>
-            <h2>📝 Form Pendaftaran Siswa Baru</h2>
-            
+        <h2>📝 Formulir Pendaftaran Siswa Baru</h2>
+        <form id="registrationForm">
             <div class="form-group">
-                <label for="namaLengkap">Nama Lengkap</label>
-                <input type="text" id="namaLengkap" name="namaLengkap" placeholder="Masukkan nama lengkap Anda" required>
-                <span class="error-message"></span>
+                <label for="fullName">Nama Lengkap</label>
+                <input type="text" id="fullName" name="fullName" required>
             </div>
-            
             <div class="form-group">
-                <label for="tanggalLahir">Tanggal Lahir</label>
-                <input type="date" id="tanggalLahir" name="tanggalLahir" required>
-                <span class="error-message"></span>
+                <label for="birthDate">Tanggal Lahir</label>
+                <input type="date" id="birthDate" name="birthDate" required>
             </div>
-
             <div class="form-group">
-                <label>Jenis Kelamin</label>
-                <div class="radio-group">
-                    <input type="radio" id="lakiLaki" name="jenisKelamin" value="Laki-laki" required>
-                    <label for="lakiLaki">Laki-laki</label>
-                    <input type="radio" id="perempuan" name="jenisKelamin" value="Perempuan" required>
-                    <label for="perempuan">Perempuan</label>
-                </div>
-                <span class="error-message radio-error"></span>
-            </div>
-
-            <div class="form-group">
-                <label for="agama">Agama</label>
-                <select id="agama" name="agama" required>
-                    <option value="">-- Pilih Agama --</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Kristen Protestan">Kristen Protestan</option>
-                    <option value="Katolik">Katolik</option>
-                    <option value="Hindu">Hindu</option>
-                    <option value="Buddha">Buddha</option>
-                    <option value="Khonghucu">Khonghucu</option>
+                <label for="gender">Jenis Kelamin</label>
+                <select id="gender" name="gender" required>
+                    <option value="">-- Pilih Jenis Kelamin --</option>
+                    <option value="Laki-laki">Laki-laki</option>
+                    <option value="Perempuan">Perempuan</option>
                 </select>
-                <span class="error-message"></span>
             </div>
-
             <div class="form-group">
-                <label for="alamat">Alamat Lengkap</label>
-                <textarea id="alamat" name="alamat" rows="4" placeholder="Masukkan alamat lengkap Anda" required></textarea>
-                <span class="error-message"></span>
+                <label for="email">Alamat Email</label>
+                <input type="email" id="email" name="email" required>
             </div>
-
             <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
-                <span class="error-message"></span>
+                <label for="phone">Nomor Telepon</label>
+                <input type="tel" id="phone" name="phone" required>
             </div>
-
-            <div class="form-group">
-                <label for="telepon">Nomor Telepon/HP</label>
-                <input type="tel" id="telepon" name="telepon" placeholder="08..." required>
-                <span class="error-message"></span>
-            </div>
-
-            <button type="submit">Daftar</button>
+            <button type="submit" class="btn">Daftar</button>
         </form>
+        <p id="confirmation-message"></p>
     </div>
 
-    <script src="asset/script.js"></script>
+    <script>
+        // JavaScript untuk Fungsionalitas
+        document.getElementById('registrationForm').addEventListener('submit', function(event) {
+            // Mencegah form dikirim secara default
+            event.preventDefault();
+
+            // 1. Mengambil data dari form
+            const fullName = document.getElementById('fullName').value;
+            const birthDate = document.getElementById('birthDate').value;
+            const gender = document.getElementById('gender').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            // 2. Membuat objek data siswa
+            const studentData = {
+                fullName: fullName,
+                birthDate: birthDate,
+                gender: gender,
+                email: email,
+                phone: phone
+            };
+
+            // 3. Menyimpan data ke cookie
+            // Mengubah objek menjadi string JSON agar bisa disimpan di cookie
+            // Menetapkan cookie agar berlaku selama 7 hari (expires)
+            const d = new Date();
+            d.setTime(d.getTime() + (7 * 24 * 60 * 60 * 1000));
+            let expires = "expires=" + d.toUTCString();
+            document.cookie = "studentRegistration=" + JSON.stringify(studentData) + ";" + expires + ";path=/";
+
+            // 4. Menampilkan pesan konfirmasi
+            const confirmationMessage = document.getElementById('confirmation-message');
+            confirmationMessage.textContent = 'Pendaftaran berhasil! Data Anda telah disimpan.';
+
+            // 5. Mengosongkan form setelah berhasil
+            document.getElementById('registrationForm').reset();
+        });
+
+        // Fungsi untuk mengecek apakah data sudah ada di cookie saat halaman dimuat
+        window.onload = function() {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim();
+                // Mengecek apakah cookie 'studentRegistration' ada
+                if (cookie.startsWith("studentRegistration=")) {
+                    // Jika ada, tampilkan pesan bahwa pengguna sudah mendaftar
+                    const confirmationMessage = document.getElementById('confirmation-message');
+                    confirmationMessage.textContent = 'Anda sudah terdaftar. Terima kasih!';
+                    break;
+                }
+            }
+        };
+    </script>
+
 </body>
 </html>
