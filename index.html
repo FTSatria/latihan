@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pendaftaran Siswa Baru</title>
+    <link rel="stylesheet" href="asset/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <form id="registrationForm" novalidate>
+            <h2>📝 Form Pendaftaran Siswa Baru</h2>
+            
+            <div class="form-group">
+                <label for="namaLengkap">Nama Lengkap</label>
+                <input type="text" id="namaLengkap" name="namaLengkap" placeholder="Masukkan nama lengkap Anda" required>
+                <span class="error-message"></span>
+            </div>
+            
+            <div class="form-group">
+                <label for="tanggalLahir">Tanggal Lahir</label>
+                <input type="date" id="tanggalLahir" name="tanggalLahir" required>
+                <span class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label>Jenis Kelamin</label>
+                <div class="radio-group">
+                    <input type="radio" id="lakiLaki" name="jenisKelamin" value="Laki-laki" required>
+                    <label for="lakiLaki">Laki-laki</label>
+                    <input type="radio" id="perempuan" name="jenisKelamin" value="Perempuan" required>
+                    <label for="perempuan">Perempuan</label>
+                </div>
+                <span class="error-message radio-error"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="agama">Agama</label>
+                <select id="agama" name="agama" required>
+                    <option value="">-- Pilih Agama --</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Kristen Protestan">Kristen Protestan</option>
+                    <option value="Katolik">Katolik</option>
+                    <option value="Hindu">Hindu</option>
+                    <option value="Buddha">Buddha</option>
+                    <option value="Khonghucu">Khonghucu</option>
+                </select>
+                <span class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="alamat">Alamat Lengkap</label>
+                <textarea id="alamat" name="alamat" rows="4" placeholder="Masukkan alamat lengkap Anda" required></textarea>
+                <span class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="contoh@email.com" required>
+                <span class="error-message"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="telepon">Nomor Telepon/HP</label>
+                <input type="tel" id="telepon" name="telepon" placeholder="08..." required>
+                <span class="error-message"></span>
+            </div>
+
+            <button type="submit">Daftar</button>
+        </form>
+    </div>
+
+    <script src="asset/script.js"></script>
+</body>
+</html>
